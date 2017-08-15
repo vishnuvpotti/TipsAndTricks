@@ -1,0 +1,28 @@
+
+Linux
+
+1) Setting proxy for docker in linux machine 
+
+mkdir -p /etc/systemd/system/docker.service.d/
+vi /etc/systemd/system/docker.service.d/http-proxy.conf
+
+[Service]
+Environment="HTTP_PROXY=http://username:password@proxyserver:port/" "HTTPS_PROXY=https://username:password@proxyserver:port/" "NO_PROXY=localhost,127.0.0.1"
+ 
+ 
+ 
+ 
+ 2) Enable daemon logs for docker
+ 
+ Create file in /etc/docker/daemon.json with contents  { "debug":true }
+ 
+Daemon logs will be located in 
+  Ubuntu — /var/log/upstart/docker.log
+  Boot2Docker — /var/log/docker.log
+  Debian GNU/Linux — /var/log/daemon.log
+  CentOS — /var/log/messages | grep docker
+  Fedora — journalctl -u docker.service
+  Red Hat Enterprise Linux Server — /var/log/messages | grep docker
+  Windows (PowerShell)— Get-EventLog -LogName Application -Source Docker -After (Get-Date).AddMinutes(-30) | Sort-Object Index | Format-Table Index,TimeWritten,Message | Out-String -Width 2048 | Out-File ~/EventLog_Docker.log 
+  
+  
