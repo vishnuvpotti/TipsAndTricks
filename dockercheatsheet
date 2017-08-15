@@ -26,3 +26,11 @@ Daemon logs will be located in
   Windows (PowerShell)— Get-EventLog -LogName Application -Source Docker -After (Get-Date).AddMinutes(-30) | Sort-Object Index | Format-Table Index,TimeWritten,Message | Out-String -Width 2048 | Out-File ~/EventLog_Docker.log 
   
   
+3) ## Update the /opt mount point to /var/lib/docker, this is because Docker’s “overlay” storage driver need xfs to be formatted with -n ftype=1           
+umount /opt
+mkfs.xfs -f -n ftype=1 /dev/vg00/opt
+mount /dev/vg00/opt /var/lib/docker
+vi /etc/fstab   and edit /dev/mapper/vg00-opt  with /var/lib/docker 
+It will look like below
+/dev/mapper/vg00-opt    /var/lib/docker                    xfs     defaults        1 2
+ 
