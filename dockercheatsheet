@@ -34,3 +34,26 @@ vi /etc/fstab   and edit /dev/mapper/vg00-opt  with /var/lib/docker
 It will look like below
 /dev/mapper/vg00-opt    /var/lib/docker                    xfs     defaults        1 2
  
+ 
+ 
+ #####################Docker Commands##########################
+ 
+ 1) Remove all docker Images
+docker rmi -f $(docker images -a -q)
+
+
+2) Remove all docker containers
+docker rm -f $(docker ps -a -q)
+
+
+3) Remove containers that are exited
+docker rm $(docker ps -a -f status=exited -q)
+
+4) List exited containers
+docker ps -a -f status=exited
+
+5) List all volumes
+docker volume ls
+
+6) Remove all volumes
+docker volume rm -f $(docker volume ls)
