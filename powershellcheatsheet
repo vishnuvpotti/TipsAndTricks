@@ -1,0 +1,7 @@
+1) Avoid entering user credntials in prompt
+
+$MyCredentials=GET-CREDENTIAL –Credential “CONTOSO\Username” | EXPORT-CLIXML C:\Credentials\SecureCredentials.xml
+
+Distribute the xml file and use the below commands whenever needed.
+$MyCredentials=IMPORT-CLIXML C:\Credentials\SecureCredentials.xml 
+
