@@ -57,3 +57,9 @@ docker volume ls
 
 6) Remove all volumes
 docker volume rm -f $(docker volume ls)
+
+7) Having custom ports when deploying docker image.
+eg -  sudo docker run -d --restart=unless-stopped -p 7990:8080 rancher/server
+      where 7990 is the TCP port to be exposed on machine and 8080 is the internal port exposed in the image.
+      7990 can be changed to which ever port we like whereas 8080 should be constant. If we want to change 8080, then we need to recreate docker image.
+
